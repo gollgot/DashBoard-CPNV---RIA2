@@ -1,0 +1,12 @@
+{
+    "name": "loic/dashboard-cpnv",
+    "authors": [
+        {
+            "name": "Loic Dessaules",
+            "email": "loic.dessaules@cpnv.ch"
+        }
+    ],
+    "require": {
+        "slim/slim": "^3.9"
+    }
+}
