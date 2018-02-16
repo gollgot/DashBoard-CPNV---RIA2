@@ -7,6 +7,8 @@ use Slim\Http\Request;
 use Slim\Http\Response;
 use Symfony\Component\Yaml\Parser;
 
+use Abraham\TwitterOAuth\TwitterOAuth;
+
 class HomeController extends Controller {
 
     private $api_config;
@@ -23,9 +25,13 @@ class HomeController extends Controller {
 
     public function ActionIndex(Request $request, Response $response){
         $fbPageLikes = $this->apiFacebookFetchPageLikes();
+        $twitterPageFollowers = $this->apiTwitterFetchPageFollowers();
+
+        $this->apiTwitterFetchPageFollowers();
 
         $this->render($response, "home/index.twig", [
-            'fbPageLikes' => $fbPageLikes
+            'fbPageLikes' => $fbPageLikes,
+            'twitterPageFollowers' => $twitterPageFollowers
         ]);
     }
 
@@ -67,6 +73,21 @@ class HomeController extends Controller {
         $graphNode = $fbResponse->getGraphNode();
 
         return $graphNode["fan_count"];
+    }
+
+    private function apiTwitterFetchPageFollowers(){
+        // fetch the facebook credentials configuration
+        $config = $this->api_config["twitter"];
+
+        // Ask for a new access token
+        $oauth = new TwitterOAuth($config["consumer_key"], $config["consumer_secret"]);
+        $accessToken = $oauth->oauth2("oauth2/token", ["grant_type" => "client_credentials"]);
+
+        // Init our twitter obj with our access token generated previously, now we can launch API request
+        $twitter = new TwitterOAuth($config["consumer_key"], $config["consumer_secret"], null, $accessToken->access_token);
+        $cpnv = $twitter->get("users/show", ["screen_name" => "cpnv_ch"]);
+
+        return $cpnv->followers_count;
     }
 
 }
