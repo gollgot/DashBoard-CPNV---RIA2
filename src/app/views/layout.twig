@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <h1>Navigation</h1>
+        <ul>
+            <li><a href="{{ path_for("home") }}">Accueil</a></li>
+            <li><a href="{{ path_for("test") }}">Test</a></li>
+        </ul>
+
+        {% block content %}
+        {% endblock %}
+    </body>
+</html>
