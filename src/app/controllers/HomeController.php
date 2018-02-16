@@ -15,8 +15,10 @@ class HomeController extends Controller {
         ]);
     }
 
+    /*
     public function ActionTest(Request $request, Response $response){
         $this->render($response, "home/test.twig");
     }
+    */
 
 }

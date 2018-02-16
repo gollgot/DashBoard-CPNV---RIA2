@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>{% block title %}{% endblock %}</title>
+        <title>Dashboard CPNV</title>
         <meta charset="utf-8">
+
+        <link rel="stylesheet" href="css/vendor/bootstrap.css">
+        <link rel="stylesheet" href="css/vendor/bootstrap-theme.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
     </head>
     <body>
-        <h1>Navigation</h1>
-        <ul>
-            <li><a href="{{ path_for("home") }}">Accueil</a></li>
-            <li><a href="{{ path_for("test") }}">Test</a></li>
-        </ul>
+
+        <h1>Dashboard CPNV</h1>
 
         {% block content %}
         {% endblock %}
+
+        <script type="text/javascript" src="js/vendor/jquery-3.3.1.min.js"></script>
+        <script type="text/javascript" src="js/vendor/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/main.js"></script>
     </body>
 </html>

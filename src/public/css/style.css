@@ -1,0 +1,24 @@
+body{
+    margin: 0px;
+    padding: 0px;
+    background-color: #F1F1F1;
+}
+
+h1{
+    text-align: center;
+    margin: 30px 0px 60px 0px;
+}
+
+.box {
+    padding:15px;
+    background-color: #F8F8F8;
+    border: 1px solid #E5E5E5;
+    border-radius: 6px;
+    height:400px;
+}
+.box h2{
+    margin:0px;
+    padding:0px;
+    color: #979D9D;
+    text-align: center;
+}
