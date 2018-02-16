@@ -1,2 +1,6 @@
+# Composer vendors
 src/vendor
+# PHP Storm (inteliJ) file
 .idea/
+# config file for our credentials
+src/app/config/parameters.yml

@@ -1,0 +1,7 @@
+# This file is a "template" of what your parameters.yml file should look like
+parameters:
+    api:
+        facebook:
+            app_id: "xxx"
+            app_secret: "xxx"
+            access_token: "xxx"
