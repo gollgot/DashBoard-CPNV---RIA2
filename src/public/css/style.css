@@ -15,10 +15,13 @@ h1{
     border: 1px solid #E5E5E5;
     border-radius: 6px;
     height:400px;
-}
-.box h2{
-    margin:0px;
-    padding:0px;
-    color: #979D9D;
     text-align: center;
+}
+.box img{
+    margin: 0px 0px 10px 0px;
+    padding:0px;
+}
+.box .count{
+    font-size: 26px;
+    font-weight: bold;
 }
