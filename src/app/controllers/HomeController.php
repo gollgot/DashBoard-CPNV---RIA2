@@ -24,17 +24,17 @@ class HomeController extends Controller {
 
 
     public function ActionIndex(Request $request, Response $response){
-        $fbPageLikes = $this->apiFacebookFetchPageLikes();
-        $twitterPageFollowers = $this->apiTwitterFetchPageFollowers();
-        $instagramPageSubscribers = $this->instagramHackFetchPageSubscribers();
+        $facebook = $this->apiFacebookFetchData();
+        $twitter = $this->apiTwitterFetchData();
+        $instagram = $this->instagramHackFetchData();
 
-        $totalCount = $fbPageLikes + $twitterPageFollowers + $instagramPageSubscribers;
+        $totalCount = $facebook["fanCount"] + $twitter["followersCount"] + $instagram["subscribersCount"];
 
         $this->render($response, "home/index.twig", [
             'totalCount' => $totalCount,
-            'fbPageLikes' => $fbPageLikes,
-            'twitterPageFollowers' => $twitterPageFollowers,
-            'instagramPageSubscribers' => $instagramPageSubscribers,
+            'facebook' => $facebook,
+            'twitter' => $twitter,
+            'instagram' => $instagram,
         ]);
     }
 
@@ -43,7 +43,8 @@ class HomeController extends Controller {
 
 
 
-    private function apiFacebookFetchPageLikes(){
+    private function apiFacebookFetchData(){
+
         // fetch the facebook credentials configuration
         $config = $this->api_config["facebook"];
 
@@ -58,27 +59,38 @@ class HomeController extends Controller {
           'default_graph_version' => 'v2.10',
         ]);
 
-        // Run our get request to fetch the number of likes for our cpnv page
         try {
-          // Returns a `FacebookFacebookResponse` object
-          $fbResponse = $fb->get(
-            '/135906713123852?fields=fan_count',
-            $access_token
-          );
+            // Get a response object for posts
+            $postsResponse = $fb->get(
+                '/cpnv.ch/posts',
+                $access_token
+            );
+            // Get a response object for fan count
+            $FanCountResponse = $fb->get(
+                '/135906713123852?fields=fan_count',
+                $access_token
+            );
         } catch(FacebookExceptionsFacebookResponseException $e) {
-          echo 'Graph returned an error: ' . $e->getMessage();
-          exit;
+            echo 'Graph returned an error: ' . $e->getMessage();
+            exit;
         } catch(FacebookExceptionsFacebookSDKException $e) {
-          echo 'Facebook SDK returned an error: ' . $e->getMessage();
-          exit;
+            echo 'Facebook SDK returned an error: ' . $e->getMessage();
+            exit;
         }
 
-        $graphNode = $fbResponse->getGraphNode();
 
-        return $graphNode["fan_count"];
+        $posts = $postsResponse->getGraphEdge()->asArray();
+        $fanCount = $FanCountResponse->getGraphNode()["fan_count"];
+
+        $result = [
+            "fanCount" => $fanCount,
+            "posts" => $posts
+        ];
+
+        return $result;
     }
 
-    private function apiTwitterFetchPageFollowers(){
+    private function apiTwitterFetchData(){
         // fetch the facebook credentials configuration
         $config = $this->api_config["twitter"];
 
@@ -90,10 +102,14 @@ class HomeController extends Controller {
         $twitter = new TwitterOAuth($config["consumer_key"], $config["consumer_secret"], null, $accessToken->access_token);
         $cpnv = $twitter->get("users/show", ["screen_name" => "cpnv_ch"]);
 
-        return $cpnv->followers_count;
+        $result = [
+            "followersCount" => $cpnv->followers_count,
+        ];
+
+        return $result;
     }
 
-    private function instagramHackFetchPageSubscribers(){
+    private function instagramHackFetchData(){
         /* Instagram need an authorization from the target page to acces their PUBLIC data from the API ... Wtf ? So I found a little hack
            to access them. Found here : ->  https://stackoverflow.com/questions/11796349/instagram-how-to-get-my-user-id-from-username */
         $url = "https://www.instagram.com/cpnv.ch/?__a=1";
@@ -101,7 +117,11 @@ class HomeController extends Controller {
         $json = file_get_contents($url);
         $jsonObj = json_decode($json);
 
-        return $jsonObj->user->followed_by->count;
+        $result = [
+            "subscribersCount" => $jsonObj->user->followed_by->count,
+        ];
+
+        return $result;
     }
 
 }
