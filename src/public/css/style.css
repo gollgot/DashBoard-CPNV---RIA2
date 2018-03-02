@@ -8,17 +8,44 @@ h1{
     text-align: center;
     margin: 30px 0px 60px 0px;
 }
+.border-dotted-left{
+    border-left: 2px dotted #E5E5E5;
+}
+
+#header {
+    width:100%;
+    text-align: center;
+}
+#header img{
+    margin: 60px 0px 40px 0px;
+}
+#header p{
+    margin-bottom: 40px;
+    font-size: 22px;
+}
+#header p span.count{
+    font-weight: bold;
+    font-size: 26px;
+}
+
 
 .box {
+    margin-bottom: 20px;
     padding:15px;
     background-color: #F8F8F8;
     border: 1px solid #E5E5E5;
     border-radius: 6px;
-    height:400px;
+}
+.box .left-box{
     text-align: center;
 }
-.box img{
+.box .right-box h3{
     margin: 0px 0px 10px 0px;
+    padding: 0px;
+    text-align: center;
+}
+.box img.media-logo{
+    margin: 30px 0px 10px 0px;
     padding:0px;
 }
 .box .count{

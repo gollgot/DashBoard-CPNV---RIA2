@@ -28,7 +28,10 @@ class HomeController extends Controller {
         $twitterPageFollowers = $this->apiTwitterFetchPageFollowers();
         $instagramPageSubscribers = $this->instagramHackFetchPageSubscribers();
 
+        $totalCount = $fbPageLikes + $twitterPageFollowers + $instagramPageSubscribers;
+
         $this->render($response, "home/index.twig", [
+            'totalCount' => $totalCount,
             'fbPageLikes' => $fbPageLikes,
             'twitterPageFollowers' => $twitterPageFollowers,
             'instagramPageSubscribers' => $instagramPageSubscribers,
