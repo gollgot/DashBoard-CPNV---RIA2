@@ -27,15 +27,11 @@
                         <div class="border-dotted-left col-md-9">
                             <div class="right-box">
                                 <h3>Derniers posts</h3>
-                                <p class="post">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et illo inventore officiis perferendis rem tempora. Animi aperiam autem blanditiis, dolorem error eveniet harum inventore labore laudantium, natus necessitatibus possimus sint.
-                                </p>
-                                <p class="post">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et illo inventore officiis perferendis rem tempora. Animi aperiam autem blanditiis, dolorem error eveniet harum inventore labore laudantium, natus necessitatibus possimus sint.
-                                </p>
-                                <p class="post">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et illo inventore officiis perferendis rem tempora. Animi aperiam autem blanditiis, dolorem error eveniet harum inventore labore laudantium, natus necessitatibus possimus sint.
-                                </p>
+                                {% for post in facebook.posts|slice(0,3) %}
+                                    <p class="post">
+                                        {{ post.message }}
+                                    </p>
+                                {% endfor %}
                             </div>
                         </div>
 
