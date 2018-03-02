@@ -26,12 +26,12 @@ class HomeController extends Controller {
     public function ActionIndex(Request $request, Response $response){
         $fbPageLikes = $this->apiFacebookFetchPageLikes();
         $twitterPageFollowers = $this->apiTwitterFetchPageFollowers();
-
-        $this->apiTwitterFetchPageFollowers();
+        $instagramPageSubscribers = $this->instagramHackFetchPageSubscribers();
 
         $this->render($response, "home/index.twig", [
             'fbPageLikes' => $fbPageLikes,
-            'twitterPageFollowers' => $twitterPageFollowers
+            'twitterPageFollowers' => $twitterPageFollowers,
+            'instagramPageSubscribers' => $instagramPageSubscribers,
         ]);
     }
 
@@ -88,6 +88,17 @@ class HomeController extends Controller {
         $cpnv = $twitter->get("users/show", ["screen_name" => "cpnv_ch"]);
 
         return $cpnv->followers_count;
+    }
+
+    private function instagramHackFetchPageSubscribers(){
+        /* Instagram need an authorization from the target page to acces their PUBLIC data from the API ... Wtf ? So I found a little hack
+           to access them. Found here : ->  https://stackoverflow.com/questions/11796349/instagram-how-to-get-my-user-id-from-username */
+        $url = "https://www.instagram.com/cpnv.ch/?__a=1";
+
+        $json = file_get_contents($url);
+        $jsonObj = json_decode($json);
+
+        return $jsonObj->user->followed_by->count;
     }
 
 }
