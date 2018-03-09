@@ -56,7 +56,7 @@ class HomeController extends Controller {
         }
     }
 
-    
+
     private function apiFacebookFetchData(){
 
         // fetch the facebook credentials configuration

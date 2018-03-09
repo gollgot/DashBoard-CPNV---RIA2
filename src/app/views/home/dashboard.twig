@@ -26,12 +26,15 @@
                         </div>
                         <div class="border-dotted-left col-md-9">
                             <div class="right-box">
-                                <h3>Derniers posts</h3>
-                                {% for post in facebook.posts|slice(0,3) %}
-                                    <p class="post">
-                                        {{ post.message }}
-                                    </p>
-                                {% endfor %}
+                                <div class="posts">
+                                    <h3>Derniers posts</h3>
+                                    {% for post in facebook.posts|slice(0,3) %}
+                                        <span class="post-date"><i>{{ post.created_time.date | date("d.m.Y - H:i") }}</i></span>
+                                        <p class="post-message">
+                                            {{ post.message }}
+                                        </p>
+                                    {% endfor %}
+                                </div>
                             </div>
                         </div>
 
