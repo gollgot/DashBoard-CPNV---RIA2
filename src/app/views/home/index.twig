@@ -1,102 +1,15 @@
 {% extends "layout.twig" %}
 
 {% block content %}
-
-    <div class="container">
-
-        <div id="header">
-            <img src="img/logo-cpnv.png" alt="Cpnv-logo">
-            <p>Suivi par <span class="count" data-number="{{ totalCount }}">{{ totalCount }}</span> personnes sur les réseaux sociaux !</p>
-        </div>
-
-        <div class="row">
-
-            <div class="col-md-12">
-                <div class="box">
-                    <div class="row">
-
-                        <div class="col-md-3">
-                            <div class="left-box">
-                                <img class="media-logo" src="img/logo_fb.png" alt="Facebook logo">
-                                <div class="count" data-number="{{ facebook.fanCount }}"></div>
-                                <div class="sub-text">
-                                    Likes
-                                </div>
-                            </div>
-                        </div>
-                        <div class="border-dotted-left col-md-9">
-                            <div class="right-box">
-                                <h3>Derniers posts</h3>
-                                {% for post in facebook.posts|slice(0,3) %}
-                                    <p class="post">
-                                        {{ post.message }}
-                                    </p>
-                                {% endfor %}
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-12">
-                <div class="box">
-                    <div class="row">
-
-                        <div class="col-md-3">
-                            <div class="left-box">
-                                <img class="media-logo" src="img/logo_instagram.png" alt="Instagram logo">
-                                <div class="count" data-number="{{ instagram.subscribersCount }}"></div>
-                                <div class="sub-text">
-                                    Subscribers
-                                </div>
-                            </div>
-                        </div>
-                        <div class="border-dotted-left col-md-9">
-                            <div class="right-box">
-                                <h3>Dernières images</h3>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-12">
-                <div class="box">
-                    <div class="row">
-
-                        <div class="col-md-3">
-                            <div class="left-box">
-                                <img class="media-logo" src="img/logo_twitter.png" alt="Twitter logo">
-                                <div class="count" data-number="{{ twitter.followersCount }}"></div>
-                                <div class="sub-text">
-                                    Followers
-                                </div>
-                            </div>
-                        </div>
-                        <div class="border-dotted-left col-md-9">
-                            <div class="right-box">
-                                <h3>Derniers tweets</h3>
-                                <p class="tweet">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et illo inventore officiis perferendis rem tempora. Animi aperiam autem blanditiis, dolorem error eveniet harum inventore labore laudantium, natus necessitatibus possimus sint.
-                                </p>
-                                <p class="tweet">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et illo inventore officiis perferendis rem tempora. Animi aperiam autem blanditiis, dolorem error eveniet harum inventore labore laudantium, natus necessitatibus possimus sint.
-                                </p>
-                                <p class="tweet">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et illo inventore officiis perferendis rem tempora. Animi aperiam autem blanditiis, dolorem error eveniet harum inventore labore laudantium, natus necessitatibus possimus sint.
-                                </p>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
+    <div id="loader">
+        <img src="{{ base_url() }}/img/loader.gif" alt="Loader">
     </div>
+{% endblock %}
 
-
+{% block customJS %}
+    <script type="text/javascript">
+        $(document).ready(function(){
+            window.location.href = "./dashboard";
+        });
+    </script>
 {% endblock %}

@@ -12,6 +12,18 @@ h1{
     border-left: 2px dotted #E5E5E5;
 }
 
+div#loader {
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    background-color: #FFF;
+    z-index: 3;
+    text-align: center;
+}
+div#loader img{
+    margin-top: 150px;
+}
+
 #header {
     width:100%;
     text-align: center;

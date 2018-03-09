@@ -22,27 +22,41 @@ class HomeController extends Controller {
         $this->api_config = $parameters["parameters"]["api"];
     }
 
-
+    /**
+     * Display the home page (loader + redirect to the dashboard)
+     * @param Request $request
+     * @param Response $response
+     */
     public function ActionIndex(Request $request, Response $response){
-        $facebook = $this->apiFacebookFetchData();
-        $twitter = $this->apiTwitterFetchData();
-        $instagram = $this->instagramHackFetchData();
-
-        $totalCount = $facebook["fanCount"] + $twitter["followersCount"] + $instagram["subscribersCount"];
-
-        $this->render($response, "home/index.twig", [
-            'totalCount' => $totalCount,
-            'facebook' => $facebook,
-            'twitter' => $twitter,
-            'instagram' => $instagram,
-        ]);
+        $this->render($response, "home/index.twig", []);
     }
 
+    /**
+     * Display the dashboard view with all social media information
+     * @param Request $request
+     * @param Response $response
+     */
+    public function ActionDashboard(Request $request, Response $response){
+        // If we reload the dashboard page from the browser url (not f5), go to / to display the loader
+        if(empty($request->getHeader('HTTP_REFERER'))) {
+            $this->render($response, "home/index.twig", []);
+        }else {
+            $facebook = $this->apiFacebookFetchData();
+            $twitter = $this->apiTwitterFetchData();
+            $instagram = $this->instagramHackFetchData();
 
+            $totalCount = $facebook["fanCount"] + $twitter["followersCount"] + $instagram["subscribersCount"];
 
+            $this->render($response, "home/dashboard.twig", [
+                'totalCount' => $totalCount,
+                'facebook' => $facebook,
+                'twitter' => $twitter,
+                'instagram' => $instagram,
+            ]);
+        }
+    }
 
-
-
+    
     private function apiFacebookFetchData(){
 
         // fetch the facebook credentials configuration
