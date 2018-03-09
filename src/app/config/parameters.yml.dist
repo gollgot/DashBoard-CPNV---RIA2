@@ -2,6 +2,9 @@
 parameters:
     api:
         facebook:
-            app_id: "xxx"
+            app_id: "xx"
             app_secret: "xxx"
             access_token: "xxx"
+        twitter:
+            consumer_key: "xxx"
+            consumer_secret: "xxx"
