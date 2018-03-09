@@ -57,7 +57,18 @@
                         </div>
                         <div class="border-dotted-left col-md-9">
                             <div class="right-box">
-                                <h3>Dernières images</h3>
+                                <div class="medias">
+                                    <h3>Dernières images</h3>
+                                    <div class="row">
+                                        {% for media in instagram.medias|slice(0,3) %}
+                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
+                                                <div class="media">
+                                                    <img src="{{ media.thumbnail_resources.0.src }}" alt="Media instagram">
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
                             </div>
                         </div>
 

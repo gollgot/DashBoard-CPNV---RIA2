@@ -133,6 +133,7 @@ class HomeController extends Controller {
 
         $result = [
             "subscribersCount" => $jsonObj->user->followed_by->count,
+            "medias" => $jsonObj->user->media->nodes,
         ];
 
         return $result;
