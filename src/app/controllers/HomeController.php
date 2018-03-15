@@ -131,9 +131,9 @@ class HomeController extends Controller {
         $json = file_get_contents($url);
         $jsonObj = json_decode($json);
 
-        $result = [
-            "subscribersCount" => $jsonObj->user->followed_by->count,
-            "medias" => $jsonObj->user->media->nodes,
+       $result = [
+            "subscribersCount" => $jsonObj->graphql->user->edge_followed_by->count,
+            "edges" => $jsonObj->graphql->user->edge_owner_to_timeline_media->edges,
         ];
 
         return $result;

@@ -60,10 +60,10 @@
                                 <div class="medias">
                                     <h3>Dernières images</h3>
                                     <div class="row">
-                                        {% for media in instagram.medias|slice(0,3) %}
+                                        {% for edge in instagram.edges|slice(0,3) %}
                                             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
                                                 <div class="media">
-                                                    <img src="{{ media.thumbnail_resources.0.src }}" alt="Media instagram">
+                                                    <img src="{{ edge.node.thumbnail_resources.0.src }}" alt="Media instagram">
                                                 </div>
                                             </div>
                                         {% endfor %}
