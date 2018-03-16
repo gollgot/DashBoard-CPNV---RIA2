@@ -31,9 +31,10 @@
                                     {% for post in facebook.posts|slice(0,3) %}
                                         <span class="post-date"><i>{{ post.created_time.date | date("d.m.Y - H:i") }}</i></span>
                                         <p class="post-message">
-                                            {{ post.message }}
+                                            {{ post.message ? post.message : "Aucun message"}}
                                         </p>
                                     {% endfor %}
+                                    <a href="https://www.facebook.com/cpnv.ch/" target="_blank" title="Page facebook CPNV">Voir la page facebook</a>
                                 </div>
                             </div>
                         </div>
@@ -68,6 +69,7 @@
                                             </div>
                                         {% endfor %}
                                     </div>
+                                    <a href="https://www.instagram.com/cpnv.ch/" target="_blank" title="Page instagram CPNV">Voir la page instagram</a>
                                 </div>
                             </div>
                         </div>
