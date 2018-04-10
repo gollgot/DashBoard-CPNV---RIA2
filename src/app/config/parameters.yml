@@ -1,0 +1,9 @@
+parameters:
+    api:
+        facebook:
+            app_id: "1138629672941519"
+            app_secret: "2b60552e9fdea15373682f68619bfda6"
+            access_token: "1138629672941519|h1Ro76G5Cr-Pny4csUQ005XnV2E"
+        twitter:
+            consumer_key: "ozGn2lH0IaoKtiiWhvNWsdMhI"
+            consumer_secret: "f2a6tkYqoRTVrBSqmCqmJQSjGs0Jdm2Kr4wwRyY3H2n0g2ZNmb"
