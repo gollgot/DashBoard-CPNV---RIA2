@@ -23,7 +23,7 @@ All figures will be get from social network APIs, etc.
     
     3.1 [App parameters](#app-parameters)
     
-    3.2 [dev/prod mode](#dev/prod-mode)
+    3.2 [dev/prod mode](#devprod-mode)
     
 4. [Libraries used](#libraries-used)
 
