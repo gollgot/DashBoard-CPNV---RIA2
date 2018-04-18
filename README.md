@@ -37,6 +37,14 @@ All figures will be get from social network APIs, etc.
     
     4.5 [Twitteroauth](#twitteroauth)
 
+5. [Data fetch](#data-fetch)
+
+    5.1 [Facebook](#facebook)
+    
+    5.2 [Twitter](#twitter)
+    
+    5.3 [Instagram](#instagram)
+
 ## Getting started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
@@ -155,3 +163,23 @@ This is a really popular PHP library for Twitter's OAuth REST API.
 Official web site : [here](https://twitteroauth.com/)
 
 Github url : [here](https://github.com/abraham/twitteroauth)
+
+## Data fetch
+
+### Facebook
+Data fetch :
+ - number of "likes"
+ - 3 last posts.
+
+### Twitter
+Data fetch : 
+ - number of "followers"
+
+We can't fetch the last twitts, because our application need a specific access authorisation by the twitter account owner.
+
+### Instagram
+Data fetch : 
+ - ~~number of "subscribers"~~
+ - ~~3 last images~~
+
+*Unfortunately we had to deleted all the instagram data fetch because we used a little "hack" to fetch the number of subscribers and last images but this method doesn't work anymore... We let the code about the instagram fetching data if you want to see it.*

@@ -43,15 +43,15 @@ class HomeController extends Controller {
         }else {
             $facebook = $this->apiFacebookFetchData();
             $twitter = $this->apiTwitterFetchData();
-            $instagram = $this->instagramHackFetchData();
+            //$instagram = $this->instagramHackFetchData();
 
-            $totalCount = $facebook["fanCount"] + $twitter["followersCount"] + $instagram["subscribersCount"];
+            $totalCount = $facebook["fanCount"] + $twitter["followersCount"] /*+ $instagram["subscribersCount"]*/;
 
             $this->render($response, "home/dashboard.twig", [
                 'totalCount' => $totalCount,
                 'facebook' => $facebook,
                 'twitter' => $twitter,
-                'instagram' => $instagram,
+                //'instagram' => $instagram,
             ]);
         }
     }
@@ -123,10 +123,12 @@ class HomeController extends Controller {
         return $result;
     }
 
+    // This method has been removed because the Hack doesn't work anymore...
+    /*
     private function instagramHackFetchData(){
         /* Instagram need an authorization from the target page to acces their PUBLIC data from the API ... Wtf ? So I found a little hack
            to access them. Found here : ->  https://stackoverflow.com/questions/11796349/instagram-how-to-get-my-user-id-from-username */
-        $url = "https://www.instagram.com/cpnv.ch/?__a=1";
+        /*$url = "https://www.instagram.com/cpnv.ch/?__a=1";
 
         $json = file_get_contents($url);
         $jsonObj = json_decode($json);
@@ -136,7 +138,9 @@ class HomeController extends Controller {
             "edges" => $jsonObj->graphql->user->edge_owner_to_timeline_media->edges,
         ];
 
+        var
+
         return $result;
     }
-
+    */
 }
